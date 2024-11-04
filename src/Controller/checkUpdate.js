@@ -1,6 +1,6 @@
 import axios from 'axios';
-import proxy from './proxy.js';
-import parser from './parser.js';
+import proxy from '../utils/proxy.js';
+import parser from '../utils/parser.js';
 import { createLiElementForPost } from '../view.js';
 
 const checkUpdate = (state) => {

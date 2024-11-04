@@ -11,9 +11,9 @@ import {
   createFeedsFirstTime,
   createPostsFirstTime,
 } from '../view.js';
-import parser from './parser.js';
+import parser from '../utils/parser.js';
 import checkUpdate from './checkUpdate.js';
-import proxy from './proxy.js';
+import proxy from '../utils/proxy.js';
 
 export default () => {
   const i18nextInstance = i18next.createInstance();
