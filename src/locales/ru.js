@@ -1,7 +1,9 @@
 export default {
   texts: {
-    incorrectUrl: 'Некорректная ссылка URL',
+    incorrectUrl: 'Ссылка должна быть валидным URL',
     rssAlreadyExist: 'RSS уже существует',
-    rssUploadSuccesful: 'RSS успешно загружен',
+    rssUploaded: 'RSS успешно загружен',
+    notContainValidRSS: 'Ресурс не содержит валидный RSS',
+    networkError: 'Ошибка сети',
   },
-}
+};
