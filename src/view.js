@@ -4,11 +4,6 @@ export const elements = {
   feedback: document.querySelector('.feedback'),
   posts: document.querySelector('.posts'),
   feeds: document.querySelector('.feeds'),
-  postsList: document.querySelector('#postsList'),
-  feedsList: document.querySelector('#feedsList'),
-  modalTitle: document.querySelector('.modal-title'),
-  modalDescription: document.querySelector('.modal-body'),
-  modalCloseBtn: document.querySelector('[data-bs-dismiss="modal"]'),
 };
 
 export const renderFeedback = (message, isSuccess) => {
@@ -25,7 +20,7 @@ export const renderFeedback = (message, isSuccess) => {
   elements.feedback.textContent = message;
 };
 
-export const createLiElementForPost = (id, title, description, link) => {
+export const createLiElementForPost = (id, title, link) => {
   const ulElement = document.querySelector('#postsList');
 
   const liElement = document.createElement('li');
@@ -44,6 +39,10 @@ export const createLiElementForPost = (id, title, description, link) => {
   liLink.setAttribute('data-id', id);
   liLink.setAttribute('target', '_blank');
   liLink.setAttribute('rel', 'noopener noreferrer');
+  liLink.onclick = function clicked() {
+    liLink.classList.add('fw-normal', 'link-secondary');
+    liLink.classList.remove('fw-bold');
+  };
   liLink.textContent = title;
 
   const liButton = document.createElement('button');
@@ -100,7 +99,7 @@ export const createPosts = (parsedXml, state) => {
       description: postDescription,
       link: postLink,
     });
-    return createLiElementForPost(postId, postTitle, postDescription, postLink);
+    return createLiElementForPost(postId, postTitle, postLink);
   });
 };
 

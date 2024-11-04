@@ -40,11 +40,7 @@ export default () => {
     const schema = createSchema(state.addedRSS, i18nextInstance);
     return schema
       .validate(state.data)
-      .then(() => {
-        watchedState.validation = 'valid';
-      })
       .catch((err) => {
-        watchedState.validation = 'invalid';
         watchedState.feedback.errorMessage = err.message;
         throw new Error('Invalid URL');
       });
@@ -57,14 +53,20 @@ export default () => {
     viewButtons.forEach((btn) => {
       btn.addEventListener('click', (event) => {
         event.preventDefault();
-        const modalReadBtn = document.querySelector('.modal a');
+
+        const postLink = btn.previousSibling;
+        postLink.classList.add('fw-normal', 'link-secondary');
+        postLink.classList.remove('fw-bold');
+
+        const modalLink = document.querySelector('.modal a');
         const modalTitle = document.querySelector('.modal-title');
         const modalDescription = document.querySelector('.modal-body');
+
         const btnId = parseInt(btn.getAttribute('data-id'), 10);
         const post = state.posts.filter(({ id }) => id === btnId);
         modalTitle.textContent = post[0].title;
         modalDescription.textContent = post[0].description;
-        modalReadBtn.setAttribute('href', `${post[0].link}`);
+        modalLink.setAttribute('href', `${post[0].link}`);
       });
     });
   };
@@ -97,10 +99,10 @@ export default () => {
       })
       .catch((error) => {
         if (error.message === 'Invalid URL') {
-          console.log('Некорректная ссылка:', watchedState.feedback.errorMessage);
+          console.log('Ошибка при валидации:', watchedState.feedback.errorMessage);
         } else if (error.message === 'Invalid RSS') {
           watchedState.feedback.errorMessage = i18nextInstance.t('texts.notContainValidRSS');
-          console.log('Некорректный RSS:', watchedState.feedback.errorMessage);
+          console.log('Некорректная ссылка:', watchedState.feedback.errorMessage);
         } else if (axios.isAxiosError(error)) {
           watchedState.feedback.errorMessage = i18nextInstance.t('texts.networkError');
           console.log(watchedState.feedback.errorMessage);

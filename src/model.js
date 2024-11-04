@@ -2,8 +2,6 @@ import * as yup from 'yup';
 
 export const state = {
   data: '',
-  validation: 'valid',
-  processState: 'filling',
   feedback: {
     successMessage: '',
     errorMessage: '',
@@ -11,7 +9,6 @@ export const state = {
   addedRSS: [],
   posts: [],
   feeds: [],
-  visitedPosts: new Set(),
 };
 
 export const createSchema = (feeds, i18nextInstance) => yup
