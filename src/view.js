@@ -4,6 +4,14 @@ export const elements = {
   feedback: document.querySelector('.feedback'),
   posts: document.querySelector('.posts'),
   feeds: document.querySelector('.feeds'),
+  headTitle: document.querySelector('head title'),
+  modalLinkBtn: document.querySelector('#modalLinkBtn'),
+  modalCloseBtn: document.querySelector('#modalCloseBtn'),
+  mainTitle: document.querySelector('#mainTitle'),
+  mainDescription: document.querySelector('#mainDescription'),
+  inputLabel: document.querySelector('#inputLabel'),
+  addRSSButton: document.querySelector('#addRSSButton'),
+  exampleElement: document.querySelector('#exampleElement'),
 };
 
 export const renderFeedback = (message, isSuccess) => {
@@ -39,10 +47,10 @@ export const createLiElementForPost = (id, title, link) => {
   liLink.setAttribute('data-id', id);
   liLink.setAttribute('target', '_blank');
   liLink.setAttribute('rel', 'noopener noreferrer');
-  liLink.onclick = function clicked() {
+  liLink.addEventListener('click', () => {
     liLink.classList.add('fw-normal', 'link-secondary');
     liLink.classList.remove('fw-bold');
-  };
+  });
   liLink.textContent = title;
 
   const liButton = document.createElement('button');
@@ -149,4 +157,25 @@ export const createPostsFirstTime = (parsedXml, state) => {
   elements.posts.appendChild(divCard);
 
   createPosts(parsedXml, state);
+};
+
+export const getHtmlTranslation = (htmlElements, i18Instance) => {
+  const {
+    modalLinkBtn,
+    modalCloseBtn,
+    mainTitle,
+    mainDescription,
+    inputLabel,
+    addRSSButton,
+    exampleElement,
+    headTitle,
+  } = htmlElements;
+  headTitle.textContent = i18Instance.t('html.headTitle');
+  modalLinkBtn.textContent = i18Instance.t('html.modalLinkBtn');
+  modalCloseBtn.textContent = i18Instance.t('html.modalCloseBtn');
+  mainTitle.textContent = i18Instance.t('html.mainTitle');
+  mainDescription.textContent = i18Instance.t('html.mainDescription');
+  inputLabel.textContent = i18Instance.t('html.inputLabel');
+  addRSSButton.textContent = i18Instance.t('html.addRSSButton');
+  exampleElement.textContent = i18Instance.t('html.exampleElement');
 };

@@ -1,6 +1,4 @@
-import * as yup from 'yup';
-
-export const state = {
+const state = {
   data: '',
   feedback: {
     successMessage: '',
@@ -11,8 +9,4 @@ export const state = {
   feeds: [],
 };
 
-export const createSchema = (feeds, i18nextInstance) => yup
-  .string()
-  .required()
-  .url(i18nextInstance.t('texts.incorrectUrl'))
-  .notOneOf(feeds, i18nextInstance.t('texts.rssAlreadyExist'));
+export default state;

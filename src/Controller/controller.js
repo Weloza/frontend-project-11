@@ -2,15 +2,17 @@ import onChange from 'on-change';
 import i18next from 'i18next';
 import axios from 'axios';
 import ru from '../locales/ru.js';
-import { state, createSchema } from '../model.js';
+import state from '../model.js';
 import {
   elements,
+  getHtmlTranslation,
   renderFeedback,
   createFeed,
   createPosts,
   createFeedsFirstTime,
   createPostsFirstTime,
 } from '../view.js';
+import createSchema from '../utils/createSchema.js';
 import parser from '../utils/parser.js';
 import checkUpdate from './checkUpdate.js';
 import proxy from '../utils/proxy.js';
@@ -26,6 +28,8 @@ export default () => {
       },
     },
   });
+
+  getHtmlTranslation(elements, i18nextInstance);
 
   const watchedState = onChange(state, (path) => {
     if (path === 'feedback.successMessage') {
