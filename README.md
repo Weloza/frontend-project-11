@@ -18,4 +18,6 @@ and the ability to click on the link to read it in full.
 
 3. Run the command: _make build_
 
-4. Run the command: _make develop_
+***Link to deployed project***
+
+https://frontend-project-11-five-indol.vercel.app/
