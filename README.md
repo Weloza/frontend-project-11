@@ -16,7 +16,7 @@ and the ability to click on the link to read it in full.
 
 2. Run the command: _make install_
 
-3. Run the command: _make build_
+3. Run the command: _make develop_
 
 ***Link to deployed project***
 

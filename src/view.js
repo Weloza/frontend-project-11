@@ -111,7 +111,7 @@ export const createPosts = (parsedXml, state) => {
   });
 };
 
-export const createFeedsFirstTime = (parsedXml, state) => {
+export const createFeedFirstTime = (parsedXml, state) => {
   const divCard = document.createElement('div');
   divCard.classList.add('card', 'border-0');
 
